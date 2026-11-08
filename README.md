@@ -73,7 +73,7 @@ Fără puntea vie merge și **calea cu buton**: Claude scrie jobul, tu apeși `p
 | `lista_comanda.py` · `oferta.py` · `verificari.py` | logica de meserie, funcții pure (merg și offline, pe un export al listei) |
 | `preturi-referinta.csv` | prețuri orientative din liste publice (RO, noiembrie 2026), cu sursa și data pe rând; șablon pentru lista ta |
 | `ruleaza_fisier.py` · `test_viu.py` | unelte de test: un fișier de cod prin punte; clientul de test al punții vii |
-| `skills/` | skill-uri pentru Claude: cum se face lista de materiale, cum se citesc verificările pe model, cum se scrie oferta de casă (din model sau din cerere, cu golurile marcate), cum se răspunde clientului pe email (pe firul lui, strict la ce a scris, un pas la final) |
+| `skills/` | skill-uri pentru Claude: cum se face lista de materiale, cum se citesc verificările pe model, cum se scrie oferta de casă (din model sau din cerere, cu golurile marcate), cum se răspunde clientului pe email (pe firul lui, strict la ce a scris, un pas la final), cum se scrie raportul de șantier (o pagină din poze și notițe: făcut / urmează / de la client) |
 
 Cerințe: Windows 10/11, cadwork 3D 2026 (API cwapi3d; alte versiuni netestate), Python 3.10+ pentru server. Puntea folosește doar funcții documentate public în cwapi3d.
 

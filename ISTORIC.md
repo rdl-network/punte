@@ -30,5 +30,8 @@ Testat pe Windows 11, cadwork 3D 2026 (33, build 385 raportat prin API), Python 
 - **Skill-ul emailului către client** (`skills/emailul-catre-client`): răspunsul pe firul clientului, strict despre ce a scris el, în limba lui,
   cu un singur pas la final; cele cinci situații ale atelierului (cerere nouă, trimiterea ofertei, obiecție la preț, întârziere, client supărat);
   emailul intră în `corespondenta/` cu o linie în `casa.md`. Claude scrie, omul trimite.
+- **Skill-ul raportului de șantier** (`skills/raportul-de-santier`): o pagină pentru client din pozele și notițele de la vizită — ce s-a făcut
+  (cu trimitere la poze), unde suntem față de grafic, ce urmează, ce avem nevoie de la client cu termene; scrie ce se vede, nu ce presupune,
+  fără procente inventate, fără verdicte tehnice din poze; `7-montaj/raport-santier-<data>.md` + linia în `casa.md`. Omul semnează și trimite.
 
-Ce nu e încă aici: emailul către client din ofertă, corespondența de export, raportul de șantier; documentația în germană și italiană.
+Ce nu e încă aici: corespondența de export (al cincilea skill); emailul scris de Claude direct în `corespondenta/` (azi: omul îl salvează sau Claude cu o unealtă de fișiere).
