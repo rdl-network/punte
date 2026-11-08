@@ -25,6 +25,8 @@ Unelte:
   cadwork_opreste_puntea_vie()                     — oprește pluginul rezident (omul o poate face și cu fișierul stop.txt)
   Facilitățile nișei (6–8 nov): cadwork_lista_comanda (lista gata de comandă), cadwork_oferta (oferta de preț),
   cadwork_verificari (ce lipsește / ce nu se leagă) + cadwork_selecteaza (piesele găsite, evidențiate în cadwork).
+  Dosarul casei (8 nov): cadwork_dosar_nou (folderul standard al unei lucrări) + cadwork_dosar_stadiu („unde suntem”); cele trei
+  facilități primesc `dosar=<cale>` și scriu și acolo (5-comenzi / 2-oferta / 4-proiect), cu o linie în casa.md.
 
 Înregistrare în Claude Code (din folderul proiectului):
   claude mcp add punte-cadwork -- "<python.exe>" "<calea>\\server_punte_rdl.py"
@@ -402,14 +404,16 @@ def cadwork_diff(nume: str = "") -> str:
 
 @mcp.tool()
 def cadwork_lista_comanda(lungimi_comerciale: str = "", adaos_mm: int = 50, subgrupe: str = "", doar_selectia: bool = False,
-                          scurt: bool = True, salveaza: bool = True) -> str:
+                          scurt: bool = True, salveaza: bool = True, dosar: str = "") -> str:
     """LISTA DE MATERIALE GATA DE COMANDĂ din modelul deschis în cadwork 3D (prima facilitate a nișei): lemnul ecarisat pe
     sortimente (material + secțiune), croit pe lungimi comerciale → câte bare de fiecare lungime, m3 de comandat și pierderea
     la croit; panourile pe material + grosime, în m2; ce nu intră în cantități e numărat separat. Salvează raportul (.md) și
     tabelul (.csv, pentru Excel) în cadwork-punte/liste/ — spune omului căile, le poate trimite furnizorului.
     `lungimi_comerciale`: „3,4,5,6” (m) sau „4000 5000 13000” (mm); gol = 3/4/5/6/8/10/12/13 m. `adaos_mm` = adaos de tăiere
     pe piesă. `subgrupe` = „gg01, EG16” → doar pereții/subgrupele acelea. `doar_selectia` = doar ce a selectat omul în cadwork.
-    `scurt=False` adaugă, sub fiecare sortiment, lungimile pieselor și ce sunt. Doar citire; cu puntea vie răspunde pe loc."""
+    `scurt=False` adaugă, sub fiecare sortiment, lungimile pieselor și ce sunt. Doar citire; cu puntea vie răspunde pe loc.
+    `dosar` = calea folderului casei (dosarul casei, vezi cadwork_dosar_nou): lista intră și în `5-comenzi/lista-comanda-<data>.md` + `.csv`,
+    cu o linie în `casa.md`. Întreabă omul de dosar când lucrează la o casă anume; fără dosar, rămâne doar în cadwork-punte/liste/."""
     import lista_comanda as lc
     lungimi = lc.parseaza_lungimi(lungimi_comerciale)
     r = _cere_viu({"op": "selectie" if doar_selectia else "lista"}, timeout=180)
@@ -440,18 +444,25 @@ def cadwork_lista_comanda(lungimi_comerciale: str = "", adaos_mm: int = 50, subg
     if salveaza:
         md, csvp = lc.salveaza(rez, os.path.join(PUNTE, "liste"), r.get("model"), text)
         text += f"\n\nSalvat: {md}\n        {csvp}"
+        if dosar:
+            nota = (f"{len(rez['ecarisat'])} sortimente, {rez['ecarisat_comanda_m3']:.3f} m3 de comandat, {len(rez['panouri'])} tipuri de panouri".replace(".", ",", 1)
+                    + f" (din {r.get('model')}, {rez['piese_in_calcul']} piese)")
+            text += _in_dosar(dosar, "5-comenzi", "lista-comanda", [(md, "md"), (csvp, "csv")], nota)
+    elif dosar:
+        text += "\n\nNU am scris în dosar: salveaza=False."
     return text
 
 
 @mcp.tool()
 def cadwork_oferta(preturi_csv: str = "", lungimi_comerciale: str = "", adaos_mm: int = 50, subgrupe: str = "",
-                   doar_selectia: bool = False, client: str = "", obiect: str = "", firma: str = "") -> str:
+                   doar_selectia: bool = False, client: str = "", obiect: str = "", firma: str = "", dosar: str = "") -> str:
     """OFERTA DE PREȚ pentru structura din modelul deschis în cadwork (sarcina 1 din program): lista de comandă × fișierul de
     prețuri → lemn de structură pe sortimente (m3 de comandat × lei/m3), panouri (m2 × lei/m2), transport, manoperă, regie și
     profit, TVA 21 %, total. `preturi_csv` = calea fișierului de prețuri (CSV cu ;, coloane tip/material/unitate/
     pret_lei_fara_tva/sursa/data/nota); gol = `preturi-referinta.csv` de lângă server, cu prețuri ORIENTATIVE din liste publice
     (noiembrie 2026) — spune-i omului asta și că rândurile cu 0 (manopera, stejar, geam…) sunt DE COMPLETAT și nu intră în total.
-    Restul parametrilor ca la cadwork_lista_comanda. Scrie oferta (.md) în cadwork-punte/liste/ și spune calea."""
+    Restul parametrilor ca la cadwork_lista_comanda. Scrie oferta (.md) în cadwork-punte/liste/ și spune calea.
+    `dosar` = folderul casei: oferta intră și în `2-oferta/oferta-<data>.md`, cu o linie în `casa.md` (omul o semnează înainte să plece)."""
     import lista_comanda as lc
     import oferta as ofm
     cale = preturi_csv or os.path.join(sys_dir, "preturi-referinta.csv")
@@ -483,15 +494,42 @@ def cadwork_oferta(preturi_csv: str = "", lungimi_comerciale: str = "", adaos_mm
     of = ofm.calculeaza_oferta(rez, pr)
     text = ofm.formateaza_oferta(of, rez, r.get("model"), client=client, obiect=obiect, firma=firma)
     cale_md = ofm.salveaza_oferta(text, os.path.join(PUNTE, "liste"), r.get("model"))
-    return text + f"\n\nSalvat: {cale_md}"
+    text += f"\n\nSalvat: {cale_md}"
+    if dosar:
+        tot = of.get("total") or ""
+        suma = f"{tot:,.0f}".replace(",", ".") if isinstance(tot, (int, float)) and tot else ""
+        nota = f"oferta orientativă din model{(' pentru ' + client) if client else ''}" + (f", total {suma} lei cu TVA" if suma else "") \
+               + " — de semnat de om înainte să plece"
+        text += _in_dosar(dosar, "2-oferta", "oferta", [(cale_md, "md")], nota)
+    return text
 
 
 VERIFICARI_ULTIMELE = os.path.join(PUNTE, "ultimele_verificari.json")
 
 
+def _in_dosar(dosar: str, etapa: str, baza: str, surse: list, nota: str):
+    """Pune fișierele deja scrise (în cadwork-punte/liste/) și în dosarul casei, la etapa lor, cu data în nume, și scrie linia în casa.md.
+    Întoarce textul de adăugat la răspuns. `surse` = [(cale_sursă, ext), …]. Nu mută nimic: copiază; nu suprascrie."""
+    import shutil
+    import dosar as dz
+    ok, mesaj = dz.verifica(dosar)
+    if not ok:
+        return "\n\nNU am scris în dosar: " + mesaj
+    puse = []
+    for sursa, ext in surse:
+        if sursa and os.path.exists(sursa):
+            dest = dz.cale_fisier(mesaj, etapa, baza, ext)
+            shutil.copyfile(sursa, dest)
+            puse.append(dest)
+    if not puse:
+        return "\n\nNU am scris în dosar: n-aveam ce (salvarea e oprită?)."
+    casa = dz.noteaza(mesaj, etapa, f"{os.path.basename(puse[0])}: {nota}")
+    return "\n\nÎn dosarul casei: " + "\n                 ".join(puse) + f"\n  + o linie la «{dz.ETICHETA.get(etapa, etapa)}» în {casa}"
+
+
 @mcp.tool()
 def cadwork_verificari(subgrupe: str = "", doar_selectia: bool = False, geometrie: bool = True, buget_s: int = 120,
-                       lungime_max_m: float = 13.0, salveaza: bool = True) -> str:
+                       lungime_max_m: float = 13.0, salveaza: bool = True, dosar: str = "") -> str:
     """VERIFICĂRILE PE MODEL — „ce lipsește / ce nu se leagă” în modelul deschis în cadwork 3D (a treia facilitate a nișei).
     Pe lista de piese: lemn fără material / fără nume / fără subgrupă (nu aparține niciunui perete), secțiuni rare la 1–5 mm de
     una des folosită (dimensiune greșită?), piese peste lungimea comercială maximă, piese degenerate, aceeași secțiune cu
@@ -502,7 +540,7 @@ def cadwork_verificari(subgrupe: str = "", doar_selectia: bool = False, geometri
     desface în piesele lui); `geometrie=False` = doar lista (instant); `buget_s` = secunde pentru contact/coliziune (~0,35 s pe piesă:
     un perete de 40 de piese = 15 s, o casă de 2.000 de piese = ~12 min → pe toată casa cere cu buget_s=900 și spune omului că
     durează; raportul spune oricum cât a acoperit). Doar citire; merge numai cu puntea vie. Salvează .md în
-    cadwork-punte/liste/ și spune calea."""
+    cadwork-punte/liste/ și spune calea. `dosar` = folderul casei: raportul intră și în `4-proiect/verificari-<data>.md`, cu o linie în `casa.md`."""
     import verificari as vf
     r = _cere_viu({"op": "selectie" if doar_selectia else "lista"}, timeout=180)
     if r is None:
@@ -545,7 +583,44 @@ def cadwork_verificari(subgrupe: str = "", doar_selectia: bool = False, geometri
     if salveaza:
         cale = vf.salveaza(text, os.path.join(PUNTE, "liste"), r.get("model"))
         text += f"\n\nSalvat: {cale}"
+        if dosar:
+            nc = sum(1 for c in rez["constatari"] if c["nivel"] == "corectat")
+            nv = sum(1 for c in rez["constatari"] if c["nivel"] == "verificat")
+            nota = f"{nc} de corectat, {nv} de verificat, {rez['lemn']} piese de lemn" + (", cu geometrie" if rez.get("geometrie") else ", fără geometrie") + f" (din {r.get('model')})"
+            text += _in_dosar(dosar, "4-proiect", "verificari", [(cale, "md")], nota)
+    elif dosar:
+        text += "\n\nNU am scris în dosar: salveaza=False."
     return text
+
+
+@mcp.tool()
+def cadwork_dosar_nou(cale: str, client: str = "", ce_construim: str = "") -> str:
+    """Face DOSARUL CASEI: folderul unei lucrări, în forma standard (dosarul-casei.md) — `1-cerere/ 2-oferta/ 3-contract/ 4-proiect/
+    5-comenzi/ 6-productie/ 7-montaj/ 8-receptie/ corespondenta/` + `casa.md` („unde suntem”: client, ce construim, stadiul pe etape,
+    următorul pas, istoric). `cale` = folderul casei, de obicei `…\\Case\\AAAA-NNN Client – Localitate` (anul, numărul lucrării în an, clientul,
+    localitatea). Nu atinge ce există deja; dacă folderul e deja dosar, doar completează ce lipsește. Apoi uneltele punții primesc `dosar=<cale>`
+    și scriu acolo. Nu scrie nimic în afara folderului dat."""
+    import dosar as dz
+    try:
+        create = dz.creeaza(cale, client=client, ce=ce_construim)
+    except OSError as e:
+        return f"Nu pot face dosarul la {cale}: {e}"
+    cale = os.path.abspath(cale)
+    if not create:
+        return f"Dosarul exista deja, complet: {cale}. Stadiul:\n\n" + (dz.stadiul(cale) or "")
+    return (f"Dosarul casei e gata: {cale}\n" + "\n".join("  + " + os.path.relpath(c, cale) if c != cale else "  + (folderul)" for c in create)
+            + "\n\nCompletează casa.md (client, ce construim, sursa) sau spune-mi datele și le pun eu. De acum, la lista de comandă / ofertă / verificări, dă-mi dosar=" + cale)
+
+
+@mcp.tool()
+def cadwork_dosar_stadiu(cale: str) -> str:
+    """„Unde suntem cu casa asta?” — citește `casa.md` din dosarul casei (stadiul pe etape, următorul pas, istoricul). Doar citire."""
+    import dosar as dz
+    ok, mesaj = dz.verifica(cale)
+    if not ok:
+        return mesaj
+    s = dz.stadiul(mesaj)
+    return s if s else f"Dosarul {mesaj} n-are încă casa.md; cadwork_dosar_nou îl pune."
 
 
 @mcp.tool()

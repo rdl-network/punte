@@ -26,6 +26,15 @@ Mit geöffnetem cadwork und gestarteter Brücke, in Claude Desktop:
 | „Was habe ich seit heute Morgen am Modell geändert?“ | Ein Fingerabdruck des Modells als Referenz; der Diff: erstellt / gelöscht / geändert, Feld für Feld, Verschiebungen inklusive. |
 | „Setz einen Balken 120×240, 4 m, bei …“ | Claude schreibt den cwapi3d-Code; cadwork zeigt Ihnen einen nativen **Ja / Nein**-Dialog mit der Beschreibung; läuft nur bei Ja; landet im Undo (Strg+Z). |
 
+## Die Hausakte: ein Ordner pro Auftrag
+
+Alles, was die Werkzeuge erzeugen, kann direkt in die **Hausakte** (*dosarul casei*): ein Ordner pro Auftrag, überall gleich aufgebaut, einfache Dateien.
+`cadwork_dosar_nou` legt `1-cerere/ 2-oferta/ 3-contract/ 4-proiect/ 5-comenzi/ 6-productie/ 7-montaj/ 8-receptie/ corespondenta/` an (Anfrage, Angebot,
+Vertrag, Planung, Bestellungen, Produktion, Montage, Abnahme, Schriftverkehr) plus `casa.md` („wo wir stehen“: Kunde, was wir bauen, Stand je Phase, nächster
+Schritt). Mit `dosar=<Ordner>` landen Bestellliste, Angebot und Modellprüfung datiert in ihrer Phase, jeweils mit einer Zeile in `casa.md`. Nichts wird
+überschrieben. Heute liegt der Ordner auf Ihrem Rechner, morgen kann er auf einem gemeinsamen Laufwerk liegen, ohne dass sich etwas ändert. Die Regel
+in allen Phasen: Claude schreibt, der Mensch unterschreibt.
+
 ## Wie die Sicherheit gedacht ist
 
 Das Modell gehört Ihnen. Die Brücke hat **drei Modi**, in einer Textdatei (`%USERPROFILE%\cadwork-punte\mod.txt`):

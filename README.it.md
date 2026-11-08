@@ -26,6 +26,15 @@ Con cadwork aperto e il ponte avviato, in Claude Desktop:
 | «Cosa ho cambiato nel modello da stamattina?» | Un'impronta del modello salvata come riferimento; il diff: creato / cancellato / modificato, campo per campo, spostamenti compresi. |
 | «Metti una trave 120×240 da 4 m a quota…» | Claude scrive il codice cwapi3d; cadwork ti mostra una finestra nativa **Sì / No** con la descrizione; gira solo al Sì; entra nell'undo (Ctrl+Z). |
 
+## Il fascicolo della casa: una cartella per commessa
+
+Tutto quello che esce dagli strumenti può entrare direttamente nel **fascicolo della casa** (*dosarul casei*): una cartella per commessa, stessa struttura
+ovunque, file semplici. `cadwork_dosar_nou` crea `1-cerere/ 2-oferta/ 3-contract/ 4-proiect/ 5-comenzi/ 6-productie/ 7-montaj/ 8-receptie/ corespondenta/`
+(richiesta, offerta, contratto, progetto, ordini, produzione, montaggio, consegna, corrispondenza) più `casa.md` («a che punto siamo»: cliente, cosa
+costruiamo, stato per fase, prossimo passo). Con `dosar=<cartella>`, lista d'ordine, offerta e verifiche finiscono datate nella loro fase, ciascuna con
+una riga in `casa.md`. Nulla viene sovrascritto. Oggi la cartella sta sul tuo computer, domani può stare su una cartella condivisa senza cambiare nulla.
+La regola in tutte le fasi: Claude scrive, la persona firma.
+
 ## Com'è pensata la sicurezza
 
 Il modello è tuo. Il ponte ha **tre modalità**, in un file di testo (`%USERPROFILE%\cadwork-punte\mod.txt`):

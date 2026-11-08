@@ -19,4 +19,11 @@ Testat pe Windows 11, cadwork 3D 2026 (33, build 385 raportat prin API), Python 
 - **Instalatorul** (`instaleaza.py`) pentru un calculator Windows cu cadwork 2026 și Claude Desktop.
 - **Skill-uri** pentru Claude: lista de materiale, verificările pe model.
 
+## v0.1 — 8 noiembrie 2026, seara
+
+- **Dosarul casei** (`dosar.py`): un folder pe lucrare, în forma standard (8 etape numerotate + corespondența + `casa.md` cu stadiul pe etape).
+  `cadwork_dosar_nou` îl creează; `cadwork_dosar_stadiu` îl citește; lista de comandă, oferta și verificările primesc `dosar=<folder>` și scriu
+  acolo, datate, cu o linie la etapa lor în `casa.md`. Nimic nu se suprascrie. Testat viu pe modelul-exemplu.
+- README în germană și italiană.
+
 Ce nu e încă aici: emailul către client din ofertă, corespondența de export, raportul de șantier; documentația în germană și italiană.

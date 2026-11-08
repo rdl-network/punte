@@ -26,6 +26,16 @@ With cadwork open and the bridge started, in Claude Desktop:
 | "What did I change in the model since this morning?" | A model fingerprint saved as a reference; the diff: created / deleted / modified, field by field, moves included. |
 | "Put a 120×240 beam, 4 m long, at…" | Claude writes the cwapi3d code; cadwork shows you a native **Yes / No** dialog with the description; it runs only on Yes; it goes into undo (Ctrl+Z). |
 
+## The house file: one folder per job
+
+Everything the tools produce can go straight into the **house file** (*dosarul casei*): one folder per job, same structure everywhere, plain files.
+"Make the file for the Popescu house" → `cadwork_dosar_nou` creates `1-cerere/ 2-oferta/ 3-contract/ 4-proiect/ 5-comenzi/ 6-productie/
+7-montaj/ 8-receptie/ corespondenta/` (request, offer, contract, design, orders, production, assembly, hand-over, correspondence) + `casa.md`
+("where we are": client, what we build, stage by stage, next step). Then, with `dosar=<folder>`, the order list goes to `5-comenzi/`, the offer
+to `2-oferta/`, the model checks to `4-proiect/`, each dated and each with a line at its stage in `casa.md`. Nothing is overwritten (a second
+version on the same day gets the time). "Where are we with the Popescu house?" → Claude reads `casa.md`. Today the folder sits on your machine;
+tomorrow it can sit on a shared folder, with nothing to change. The rule across all stages: Claude writes, the person signs.
+
 ## How safety is designed
 
 The model is yours. The bridge has **three modes**, in a text file (`%USERPROFILE%\cadwork-punte\mod.txt`):

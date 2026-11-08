@@ -25,6 +25,16 @@ Cu cadwork deschis și puntea pornită, în Claude Desktop:
 | „Ce am schimbat în model de azi-dimineață?” | Amprenta modelului salvată ca reper; diff-ul: creat / șters / modificat, câmp cu câmp, inclusiv mutările. |
 | „Pune o grindă 120×240 de 4 m la cota…” | Claude scrie codul cwapi3d; cadwork îți arată un dialog **Da / Nu** cu descrierea; rulează doar la Da; intră în undo (Ctrl+Z). |
 
+## Dosarul casei: un folder pe lucrare
+
+Totul ce iese din unelte poate intra direct în **dosarul casei**: un folder pe lucrare, cu aceeași structură peste tot, fișiere simple.
+„Fă dosarul pentru casa Popescu din Gura Humorului” → `cadwork_dosar_nou` creează `1-cerere/ 2-oferta/ 3-contract/ 4-proiect/ 5-comenzi/
+6-productie/ 7-montaj/ 8-receptie/ corespondenta/` + `casa.md` („unde suntem”: client, ce construim, stadiul pe etape, următorul pas).
+Apoi, cu `dosar=<folder>`, lista de comandă intră în `5-comenzi/lista-comanda-<data>`, oferta în `2-oferta/oferta-<data>`, verificările în
+`4-proiect/verificari-<data>`, fiecare cu o linie la etapa ei în `casa.md`. Nimic nu se suprascrie (a doua versiune din aceeași zi primește ora).
+„Unde suntem cu casa Popescu?” → Claude citește `casa.md`. Azi folderul stă pe calculatorul tău; mâine poate sta pe un folder comun, fără să se
+schimbe nimic. Forma dosarului, pe larg: etapele, ce lasă fiecare, cine scrie și cine semnează — `Claude scrie, omul semnează`.
+
 ## Cum e gândită siguranța
 
 Modelul e al tău. Puntea are **trei moduri**, într-un fișier text (`%USERPROFILE%\cadwork-punte\mod.txt`):
