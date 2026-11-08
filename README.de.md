@@ -73,7 +73,7 @@ Ohne die lebende Brücke gibt es auch den **Knopf-Weg**: Claude schreibt den Job
 | `lista_comanda.py` · `oferta.py` · `verificari.py` | die Handwerkslogik, reine Funktionen (laufen auch offline, auf einer exportierten Liste) |
 | `preturi-referinta.csv` | Richtpreise aus öffentlichen Listen (Rumänien, November 2026), Quelle und Datum je Zeile; Vorlage für Ihre eigene Liste |
 | `ruleaza_fisier.py` · `test_viu.py` | Testwerkzeuge: eine Codedatei durch die Brücke; der Testclient der lebenden Brücke |
-| `skills/` | Skills für Claude: wie die Materialliste entsteht, wie die Modellprüfung gelesen wird (rumänisch) |
+| `skills/` | Skills für Claude: wie die Materialliste entsteht, wie die Modellprüfung gelesen wird, wie das Hausangebot geschrieben wird (aus dem Modell oder aus der Anfrage, Lücken markiert) (rumänisch) |
 
 Voraussetzungen: Windows 10/11, cadwork 3D 2026 (cwapi3d-API; andere Versionen ungetestet), Python 3.10+ für den Server. Die Brücke nutzt nur öffentlich dokumentierte cwapi3d-Funktionen.
 
