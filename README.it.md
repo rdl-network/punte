@@ -73,7 +73,7 @@ Senza il ponte vivo c'è anche la **via col pulsante**: Claude scrive il lavoro,
 | `lista_comanda.py` · `oferta.py` · `verificari.py` | la logica del mestiere, funzioni pure (girano anche offline, su una lista esportata) |
 | `preturi-referinta.csv` | prezzi indicativi da listini pubblici (Romania, novembre 2026), fonte e data per riga; modello per la tua lista |
 | `ruleaza_fisier.py` · `test_viu.py` | strumenti di prova: un file di codice attraverso il ponte; il client di prova del ponte vivo |
-| `skills/` | skill per Claude: come si fa la lista materiali, come si leggono le verifiche sul modello, come si scrive l'offerta della casa (dal modello o dalla richiesta, con i vuoti segnati) (romeno) |
+| `skills/` | skill per Claude: come si fa la lista materiali, come si leggono le verifiche sul modello, come si scrive l'offerta della casa (dal modello o dalla richiesta, con i vuoti segnati), come si risponde all'email di un cliente (nel suo thread, solo su ciò che ha scritto, un passo successivo) (romeno) |
 
 Requisiti: Windows 10/11, cadwork 3D 2026 (API cwapi3d; altre versioni non provate), Python 3.10+ per il server. Il ponte usa solo funzioni cwapi3d documentate pubblicamente.
 

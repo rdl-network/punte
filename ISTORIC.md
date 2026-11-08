@@ -27,5 +27,8 @@ Testat pe Windows 11, cadwork 3D 2026 (33, build 385 raportat prin API), Python 
 - README în germană și italiană.
 - **Skill-ul ofertei** (`skills/oferta-de-casa`): din model prin `cadwork_oferta` sau, fără model, studiul de volum din cerere; fiecare cifră
   cu sursa ei, golurile marcate `[__]`, capitolul „ce nu cuprinde”, TVA 21 %; Claude scrie, omul semnează.
+- **Skill-ul emailului către client** (`skills/emailul-catre-client`): răspunsul pe firul clientului, strict despre ce a scris el, în limba lui,
+  cu un singur pas la final; cele cinci situații ale atelierului (cerere nouă, trimiterea ofertei, obiecție la preț, întârziere, client supărat);
+  emailul intră în `corespondenta/` cu o linie în `casa.md`. Claude scrie, omul trimite.
 
 Ce nu e încă aici: emailul către client din ofertă, corespondența de export, raportul de șantier; documentația în germană și italiană.

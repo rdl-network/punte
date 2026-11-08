@@ -74,7 +74,7 @@ Without the live bridge there is also the **button path**: Claude writes the job
 | `lista_comanda.py` · `oferta.py` · `verificari.py` | the trade logic, pure functions (they also work offline, on an exported list) |
 | `preturi-referinta.csv` | indicative prices from public lists (Romania, November 2026), source and date per row; a template for your own list |
 | `ruleaza_fisier.py` · `test_viu.py` | test tools: a code file through the bridge; the live bridge test client |
-| `skills/` | skills for Claude: how to build the material list, how to read the model checks, how to write the house offer (from the model or from the request, gaps marked) (Romanian) |
+| `skills/` | skills for Claude: how to build the material list, how to read the model checks, how to write the house offer (from the model or from the request, gaps marked), how to answer a client's email (on their thread, strictly to what they wrote, one next step) (Romanian) |
 
 Requirements: Windows 10/11, cadwork 3D 2026 (cwapi3d API; other versions untested), Python 3.10+ for the server. The bridge uses only publicly documented cwapi3d functions.
 Tool names and messages are in Romanian in v0; Claude answers you in your language regardless.
