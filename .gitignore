@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+# fișierele de lucru ale punții stau în %USERPROFILE%\cadwork-punte, nu aici
+cadwork-punte/
+*.log
+.DS_Store
+Thumbs.db

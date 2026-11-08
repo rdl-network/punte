@@ -1,0 +1,15 @@
+tip;material;unitate;pret_lei_fara_tva;sursa;data;nota
+ecarisat;KVH C24 NSi;m3;3200;https://www.depocassa.ro/lemn-kvh-c24 (calculat din prețul pe bucată, 45x145x5000 = 102,64 lei);2026-11-06;KVH C24 importat din Germania, uscat 15%, CE; interval 3.150–3.500 lei/m3; TVA de verificat
+ecarisat;C24;m3;2050;https://lemn-depo.ro/lemn-tip-c24-clasa-bc/;2026-11-06;C24 clasa BC, origine Estonia, fără TVA
+ecarisat;GL 24 h NSi;m3;5400;https://megalemn.ro/wp-content/uploads/2026/06/lista-preturi-megalemn-1.pdf (listă 1 iulie 2026, pe metru liniar, recalculat pe m3);2026-07-01;GL24h pe secțiuni 60x120…160x320, 5.200–5.600 lei/m3 fără TVA și transport
+ecarisat;cherestea rasinoase;m3;1400;anunțuri producători (OLX, Bizoo), grinzi + căpriori;2026-11-06;cherestea brută de gater, 600–1.800 lei/m3 după regiune și uscare; ORIENTATIV
+ecarisat;Eiche;m3;0;;;stejar — DE COMPLETAT (ferestre/uși: de regulă se ofertează ca tâmplărie, nu ca lemn)
+ecarisat;Aluminium;m3;0;;;profile aluminiu (praguri, glafuri) — DE COMPLETAT
+panou;Holzweichfaser 120;m2;120;https://imaterial.ro/placi-fibre-lemn-si-ciment/ (103 lei/m2, 5 nov 2026) și https://www.zebexpert.ro/catalog/fibra-de-lemn-45 (153 lei/m2);2026-11-05;placă fibră de lemn 120 mm; alte grosimi se scalează proporțional din 120 mm
+panou;Holzweichfaser;m2/120mm;120;https://imaterial.ro/placi-fibre-lemn-si-ciment/ (103 lei/m2, 5 nov 2026) și https://www.zebexpert.ro/catalog/fibra-de-lemn-45 (153 lei/m2);2026-11-05;regula de scalare: preț × grosime / 120
+panou;Eiche;m2;0;;;foi de ușă din stejar — DE COMPLETAT (tâmplărie)
+panou;Glas;m2;0;;;geam — DE COMPLETAT (tâmplărie)
+transport;;%;5;;;procent din materiale; DE VERIFICAT cu furnizorul (distanță, camion complet)
+manopera;structura;lei/m3;0;;;manopera de prelucrare + montaj pe m3 de lemn de structură — DE COMPLETAT (depinde de firmă)
+marja;;%;15;;;regie și profit, procent peste materiale + manoperă — DE COMPLETAT
+tva;;%;21;;;TVA România 2026
