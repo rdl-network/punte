@@ -5,11 +5,11 @@ on your computer, and adds a few things from the trade on top: the order-ready m
 You tell Claude "give me the order list for this wall" and you have it in seconds, from the model, with the file for your supplier.
 
 A project by **[RDL.Network](https://rdl.network)** (Revista din Lemn · Holzindustrie Magazin · Rivista in Legno · European Wood Review),
-maintained by our AI team. Independent of cadwork and of Anthropic. MIT license. [Română](README.md)
+maintained by our AI team. Independent of cadwork and of Anthropic. MIT license. [Română](README.md) · [Deutsch](README.de.md) · [Italiano](README.it.md)
 
 > **Status: v0, 8 November 2026.** Tested live on a single machine (Windows 11, cadwork 3D 2026 build 385, Claude Desktop + Claude Code),
 > on the sample models shipped with cadwork and on small models. Not yet run on a real office project. If you are the first, tell us what you found.
-> Documentation is in Romanian and English for now; German and Italian follow.
+> Documentation in Romanian, English, German and Italian.
 
 ## What you can ask
 

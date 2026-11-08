@@ -5,7 +5,7 @@
 Îi spui lui Claude „scoate-mi lista de comandă pentru peretele ăsta” și o ai în câteva secunde, din model, cu fișierul pentru depozit.
 
 Un proiect al **[RDL.Network](https://rdl.network)** (Revista din Lemn · Holzindustrie Magazin · Rivista in Legno · European Wood Review),
-întreținut de echipa noastră de AI. Independent de cadwork și de Anthropic. Licență MIT. [English](README.en.md)
+întreținut de echipa noastră de AI. Independent de cadwork și de Anthropic. Licență MIT. [English](README.en.md) · [Deutsch](README.de.md) · [Italiano](README.it.md)
 
 > **Stare: v0, 8 noiembrie 2026.** Testat viu pe un singur calculator (Windows 11, cadwork 3D 2026 build 385, Claude Desktop + Claude Code),
 > pe modelele-exemplu livrate cu cadwork și pe modele mici. Nu l-am rulat încă pe proiectul real al unui birou. Dacă ești primul, spune-ne ce ai găsit.
