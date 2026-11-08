@@ -33,5 +33,9 @@ Testat pe Windows 11, cadwork 3D 2026 (33, build 385 raportat prin API), Python 
 - **Skill-ul raportului de șantier** (`skills/raportul-de-santier`): o pagină pentru client din pozele și notițele de la vizită — ce s-a făcut
   (cu trimitere la poze), unde suntem față de grafic, ce urmează, ce avem nevoie de la client cu termene; scrie ce se vede, nu ce presupune,
   fără procente inventate, fără verdicte tehnice din poze; `7-montaj/raport-santier-<data>.md` + linia în `casa.md`. Omul semnează și trimite.
+- **Skill-ul corespondenței de export** (`skills/corespondenta-de-export`): emailul lui în DE / FR / IT / EN + răspunsul patronului în română →
+  răspunsul în limba lui, cu termenii de meserie ai pieței lui (tabel RO / DE / FR / IT / EN cu 22 de termeni), registrul și formatele pieței,
+  **traducerea înapoi în română** sub răspuns (omul știe ce semnează), fără sfaturi fiscale, fără certificări nescrise. Cu el, **cele cinci
+  sarcini ale programului au skill** (+ verificările pe model = șase skill-uri).
 
-Ce nu e încă aici: corespondența de export (al cincilea skill); emailul scris de Claude direct în `corespondenta/` (azi: omul îl salvează sau Claude cu o unealtă de fișiere).
+Ce nu e încă aici: emailul scris de Claude direct în `corespondenta/` (azi: omul îl salvează, sau Claude cu o unealtă de fișiere); skill-urile în germană, italiană, engleză (azi doar în română).
