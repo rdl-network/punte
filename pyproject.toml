@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "punte-cadwork"
+version = "0.1.0"
+description = "Punte: Claude lucrează în cadwork 3D, pe abonamentul tău — serverul MCP + uneltele de meserie (lista de comandă, oferta, verificările pe model, dosarul casei). RDL.Network."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "RDL.Network (Ces Brands SRL)", email = "dan.radu@rdl.network" }]
+keywords = ["mcp", "cadwork", "timber", "holzbau", "claude", "case din lemn"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Microsoft :: Windows",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = ["mcp>=1.0"]
+
+[project.urls]
+Homepage = "https://github.com/rdl-network/punte"
+Repository = "https://github.com/rdl-network/punte"
+Issues = "https://github.com/rdl-network/punte/issues"
+
+[project.scripts]
+punte-cadwork = "server_punte_rdl:main"
+
+[tool.setuptools]
+# pachetul e plat (așa îl așteaptă instaleaza.py și profilul cadwork); pluginurile cadwork NU intră în wheel — le pune instaleaza.py
+py-modules = ["server_punte_rdl", "lista_comanda", "oferta", "verificari", "dosar", "instaleaza", "ruleaza_fisier"]

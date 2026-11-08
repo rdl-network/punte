@@ -782,5 +782,10 @@ def cadwork_opreste_puntea_vie() -> str:
     return "Puntea vie s-a oprit." if r.get("ok") else "Puntea vie a răspuns cu eroare: " + str(r.get("eroare"))
 
 
-if __name__ == "__main__":
+def main():
+    """Punctul de intrare al pachetului instalabil (`punte-cadwork` din pyproject) și al rulării directe."""
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()

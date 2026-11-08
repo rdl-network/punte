@@ -1,3 +1,4 @@
+<!-- mcp-name: io.github.rdl-network/punte -->
 # Punte — Claude lucrează în cadwork 3D, pe abonamentul tău
 
 **Punte** leagă Claude (Claude Desktop sau Claude Code, pe contul tău) de modelul deschis în **cadwork 3D 2026**, pe calculatorul tău,
